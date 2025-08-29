@@ -1,0 +1,33 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    outline: 1pt green solid;
+}
+
+#slide1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 0.5;
+    font-size: 2000%;
+}
+
+#text101 {
+    font-family: 'Outfit';
+    -webkit-text-stroke: 2px black;
+    color: transparent;
+    font-weight: 700;
+}
+
+#text102 {
+    font-family: 'Staatliches';
+    font-weight: 900;
+    font-size: 120%;
+    text-transform: uppercase;
+}
