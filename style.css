@@ -30,4 +30,25 @@ body {
     font-weight: 900;
     font-size: 120%;
     text-transform: uppercase;
+    color: #222;
+}
+
+.column-grid {
+    display: grid;
+    /* 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.column-grid > div {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    text-transform: lowercase;
+    font-family: 'Bodoni Moda SC';
+    font-size: 200%;
+    font-weight: 500;
 }
