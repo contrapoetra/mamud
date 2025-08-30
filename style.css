@@ -1,3 +1,8 @@
+:root {
+    --fg0: antiquewhite;
+    --fg1: #ddd;
+    --bg0: #111;
+}
 body {
     padding: 0;
     margin: 0;
@@ -6,7 +11,7 @@ body {
 .slide {
     width: 100vw;
     height: 100vh;
-    outline: 1pt green solid;
+    background: var(--bg0);
 }
 
 #slide1 {
@@ -16,26 +21,26 @@ body {
     flex-direction: column;
     line-height: 0.5;
     font-size: 2000%;
+    background: linear-gradient(to bottom, black, var(--bg0), var(--bg0));
 }
 
 #text101 {
-    font-family: 'Outfit';
-    -webkit-text-stroke: 2px black;
+    font-family: "Outfit";
+    -webkit-text-stroke: 2px var(--fg0);
     color: transparent;
     font-weight: 700;
 }
 
 #text102 {
-    font-family: 'Staatliches';
+    font-family: "Staatliches";
     font-weight: 900;
     font-size: 120%;
     text-transform: uppercase;
-    color: #222;
+    color: var(--fg1);
 }
 
 .column-grid {
     display: grid;
-    /* 3 columns */
     grid-template-columns: repeat(3, 1fr);
 }
 
@@ -47,8 +52,39 @@ body {
     align-items: center;
     writing-mode: vertical-lr;
     text-orientation: upright;
-    text-transform: lowercase;
-    font-family: 'Bodoni Moda SC';
-    font-size: 200%;
+    text-transform: uppercase;
+    font-family: "Major Mono Display";
+    font-size: 400%;
     font-weight: 500;
+    color: var(--fg1);
+}
+
+.video-grid {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    position: absolute;
+}
+
+.video-grid > div {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh / 3);
+    overflow: hidden;
+    filter: grayscale(100%) contrast(90%) brightness(50%) blur(2px);
+}
+
+.video-grid > div:nth-child(2) {
+    justify-content: center;
+}
+
+.video-grid > div:nth-child(3) {
+    justify-content: flex-end;
+}
+
+.video-grid > div > video {
+    width: 50vw;
+    min-height: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+    object-position: 50% 0%;
 }

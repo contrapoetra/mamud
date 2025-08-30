@@ -8,6 +8,24 @@ let smoother = ScrollSmoother.create({
   normalizeScroll: true,
 });
 
+for (let i = 1; i <= 3; i++) {
+  gsap.to({}, {
+    scrollTrigger: {
+      trigger: "#slide2",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+      // markers: true,
+      onUpdate: (self) => {
+        let p = self.progress * 100;
+        document.querySelector(`#video${i} video`)
+                .style.objectPosition = `50% ${p}%`;
+      }
+    }
+  });
+
+}
+
 document.fonts.ready.then(() => {
   let text101 = new SplitText("#text101", {
     type: "chars",
@@ -48,13 +66,15 @@ document.fonts.ready.then(() => {
   // SLIDE 2
 
   let text200_tweens = (chars) => {
-    return gsap.from(chars, {
-      y: "random(300, 400)",
-      x: "random([-100, 100])",
+    gsap.from(chars, {
+      y: "random(500, 1000)",
+      x: "random(-200, 200)",
       // y: 200,
+      ease: "power2.inOut",
+      autoAlpha: 0,
       rotation: "random(-360, 360)",
       filter: "blur(random(10, 30)px)",
-      stagger: 0.1,
+      stagger: 0.05,
       scrollTrigger: {
         trigger: "#slide2",
         start: "top bottom",
@@ -62,7 +82,7 @@ document.fonts.ready.then(() => {
         scrub: true,
         // markers: true,
       }
-    });
+    })
   };
 
   for (let i = 1; i <= 3; i++) {
@@ -73,6 +93,4 @@ document.fonts.ready.then(() => {
       }
     });
   }
-
-
 });
