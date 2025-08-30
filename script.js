@@ -19,7 +19,7 @@ for (let i = 1; i <= 3; i++) {
       onUpdate: (self) => {
         let p = self.progress * 100;
         document.querySelector(`#video${i} video`)
-                .style.objectPosition = `50% ${p}%`;
+               .style.objectPosition = `50% ${100 -p}%`;
       }
     }
   });
