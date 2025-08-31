@@ -27,7 +27,7 @@ body {
 #text101 {
     font-family: "Outfit";
     -webkit-text-stroke: 2pt var(--fg0);
-    color: #000;
+    color: transparent;
     font-weight: 700;
 }
 
