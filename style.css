@@ -38,11 +38,13 @@ body {
     font-size: 120%;
     text-transform: uppercase;
     color: var(--fg1);
+    text-shadow: 0 0 50px #fff2;
 }
 
 .column-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    z-index: 1;
 }
 
 .column-grid > div {
@@ -60,10 +62,15 @@ body {
     color: var(--fg1);
 }
 
+.column-grid > div > div {
+    text-shadow: 0 0 20px #fff8;
+}
+
 .video-grid {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     position: absolute;
+    z-index: 0;
 }
 
 .video-grid > div {
