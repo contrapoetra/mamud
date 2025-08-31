@@ -1,7 +1,7 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 
 let smoother = ScrollSmoother.create({
-  wrapper: "#canvass",
+  wrapper: "#app",
   content: "#main",
   smooth: 2,
   effects: true,
