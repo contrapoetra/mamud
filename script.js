@@ -9,22 +9,54 @@ let smoother = ScrollSmoother.create({
 });
 
 for (let i = 1; i <= 3; i++) {
-  gsap.to({}, {
+  gsap.to(
+    {},
+    {
+      scrollTrigger: {
+        trigger: "#slide2",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+        // markers: true,
+        onUpdate: (self) => {
+          let p = self.progress * 100;
+          document.querySelector(`#video${i} video`).style.objectPosition =
+            `50% ${100 - p}%`;
+        },
+      },
+    },
+  );
+}
+
+gsap.from(
+  "#video1",
+  {
+    x: -500,
+    ease: "power2.out",
     scrollTrigger: {
       trigger: "#slide2",
       start: "top bottom",
+      end: "center center",
+      scrub: true,
+      // markers: true,
+    },
+  },
+);
+
+gsap.to(
+  "#video3",
+  {
+    x: 500,
+    ease: "power2.in",
+    scrollTrigger: {
+      trigger: "#slide2",
+      start: "center center",
       end: "bottom top",
       scrub: true,
       // markers: true,
-      onUpdate: (self) => {
-        let p = self.progress * 100;
-        document.querySelector(`#video${i} video`)
-               .style.objectPosition = `50% ${100 -p}%`;
-      }
-    }
-  });
-
-}
+    },
+  },
+);
 
 document.fonts.ready.then(() => {
   let text101 = new SplitText("#text101", {
@@ -40,9 +72,9 @@ document.fonts.ready.then(() => {
           end: "bottom center",
           scrub: 0.25,
           // markers: true,
-        }
+        },
       });
-    }
+    },
   });
 
   let text102 = new SplitText("#text102", {
@@ -58,9 +90,9 @@ document.fonts.ready.then(() => {
           end: "bottom center",
           scrub: 0.25,
           // markers: true,
-        }
+        },
       });
-    }
+    },
   });
 
   // SLIDE 2
@@ -81,8 +113,8 @@ document.fonts.ready.then(() => {
         end: "center center",
         scrub: true,
         // markers: true,
-      }
-    })
+      },
+    });
   };
 
   for (let i = 1; i <= 3; i++) {
@@ -90,7 +122,7 @@ document.fonts.ready.then(() => {
       type: "chars",
       onSplit: (self) => {
         return text200_tweens(self.chars);
-      }
+      },
     });
   }
 });

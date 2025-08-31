@@ -12,6 +12,7 @@ body {
     width: 100vw;
     height: 100vh;
     background: var(--bg0);
+    user-select: none;
 }
 
 #slide1 {
