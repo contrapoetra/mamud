@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 
 let smoother = ScrollSmoother.create({
@@ -33,6 +34,7 @@ gsap.from(
   {
     x: -500,
     ease: "power2.out",
+    autoAlpha: 0,
     scrollTrigger: {
       trigger: "#slide2",
       start: "top bottom",
@@ -47,6 +49,7 @@ gsap.to(
   "#video3",
   {
     x: 500,
+    autoAlpha: 0,
     ease: "power2.in",
     scrollTrigger: {
       trigger: "#slide2",
@@ -57,6 +60,18 @@ gsap.to(
     },
   },
 );
+
+gsap.from("#separator", {
+  rotation: 45/2,
+  // ease: "power3.inOut",
+  scrollTrigger: {
+    trigger: "#slide3",
+    start: "top bottom",
+    end: "center center",
+    scrub: true,
+    // markers: true,
+  },
+});
 
 document.fonts.ready.then(() => {
   let text101 = new SplitText("#text101", {
@@ -126,3 +141,36 @@ document.fonts.ready.then(() => {
     });
   }
 });
+
+// 3D STUFF
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+const renderer = new THREE.WebGLRenderer({
+  canvas: document.querySelector('#render'),
+  alpha: true
+});
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+
+const color = 0xFFFFFF;
+const intensity = 10;
+const light = new THREE.DirectionalLight(color, intensity);
+light.position.set(0, 10, 0);
+light.target.position.set(-5, 0, 0);
+scene.add(light);
+scene.add(light.target);
+
+camera.position.z = 3;
+
+function animate() {
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.001;
+  renderer.render(scene, camera);
+}
+renderer.setAnimationLoop( animate)
