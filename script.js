@@ -49,8 +49,8 @@ gsap.to(
   "#video3",
   {
     x: 500,
-    autoAlpha: 0,
     ease: "power2.in",
+    autoAlpha: 0,
     scrollTrigger: {
       trigger: "#slide2",
       start: "center center",
@@ -63,7 +63,6 @@ gsap.to(
 
 gsap.from("#separator", {
   rotation: 45/2,
-  // ease: "power3.inOut",
   scrollTrigger: {
     trigger: "#slide3",
     start: "top bottom",
@@ -140,6 +139,96 @@ document.fonts.ready.then(() => {
       },
     });
   }
+
+  let text301 = new SplitText("#text301", {
+    type: "chars",
+    mask: "chars",
+    onSplit: (self) => {
+      gsap.from(self.chars, {
+        opacity: 0,
+        filter: "blur(10px)",
+        ease: "power.inOut",
+        autoAlpha: 0,
+        stagger: 1,
+        scrollTrigger: {
+          trigger: "#slide3",
+          start: "top bottom",
+          end: "center center",
+          scrub: true,
+          // markers: true,
+        },
+      });
+    },
+  });
+
+  let text303 = new SplitText("#text303", {
+    type: "chars",
+    mask: "chars",
+    onSplit: (self) => {
+      gsap.from(self.chars, {
+        opacity: 0,
+        filter: "blur(10px)",
+        ease: "power.inOut",
+        autoAlpha: 0,
+        stagger: 1,
+        scrollTrigger: {
+          trigger: "#slide3",
+          start: "top bottom",
+          end: "center center",
+          scrub: true,
+          // markers: true,
+        },
+      });
+    },
+  });
+});
+
+let text302 = new SplitText("#text302", {
+  type: "chars",
+  onSplit: (self) => {
+    gsap.from(self.chars, {
+      y: "random(-10, 10)",
+      x: "random(-5, 5)",
+      rotation: "random(-10, 10)",
+      delay: 2,
+      opacity: 0,
+      filter: "blur(10px)",
+      ease: "power.inOut",
+      autoAlpha: 0,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: "#slide3",
+        start: "top bottom",
+        end: "center center",
+        scrub: true,
+        // markers: true,
+      },
+    });
+  },
+});
+
+let text304 = new SplitText("#text304", {
+  type: "chars",
+  onSplit: (self) => {
+    gsap.from(self.chars, {
+      y: "random(-10, 10)",
+      x: "random(-5, 5)",
+      rotation: "random(-10, 10)",
+      delay: 4,
+      opacity: 0,
+      filter: "blur(10px)",
+      ease: "power.inOut",
+      autoAlpha: 0,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: "#slide3",
+        start: "top bottom",
+        end: "center center",
+        scrub: true,
+        // markers: true,
+      },
+    });
+  },
 });
 
 // 3D STUFF

@@ -1,7 +1,7 @@
 :root {
     --fg0: antiquewhite;
     --fg1: #ddd;
-    --fg2: #333;
+    --fg2: #666;
     --bg0: #111;
 }
 
@@ -68,7 +68,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
-    width: 1px;
+    width: 1pt;
     height: 50%;
     background-color: var(--fg1);
     filter: brightness(50%);
