@@ -9,6 +9,12 @@ let smoother = ScrollSmoother.create({
   normalizeScroll: true,
 });
 
+document.addEventListener('keydown', (event) => {
+  if (event.key === "ArrowDown") {
+    smoother.scrollTop(window.innerHeight);
+  }
+});
+
 for (let i = 1; i <= 3; i++) {
   gsap.to(
     {},
@@ -63,12 +69,26 @@ gsap.to(
 
 gsap.from("#separator", {
   rotation: 45/2,
+  filter: "blur(5pt)",
   scrollTrigger: {
     trigger: "#slide3",
     start: "top bottom",
     end: "center center",
     scrub: true,
     // markers: true,
+  },
+});
+
+gsap.to("#slide4", {
+  x: 2 * -window.innerWidth,
+  ease: "power1.inOut",
+  scrollTrigger: {
+    trigger: "#slide4",
+    start: "top",
+    end: "300%",
+    scrub: true,
+    // markers: true,
+    pin: true,
   },
 });
 
@@ -129,6 +149,23 @@ document.fonts.ready.then(() => {
         // markers: true,
       },
     });
+
+    gsap.fromTo(chars, {}, {
+      y: "random(10, 200)",
+      x: "random(-100, 100)",
+      ease: "power1.in",
+      autoAlpha: 0,
+      rotation: "random(-360, 360)",
+      filter: "blur(random(10, 30)px)",
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: "#slide2",
+        start: "center center",
+        end: "bottom top",
+        scrub: true,
+        // markers: true,
+      },
+    });
   };
 
   for (let i = 1; i <= 3; i++) {
@@ -140,9 +177,10 @@ document.fonts.ready.then(() => {
     });
   }
 
+  // SLIDE 3
+
   let text301 = new SplitText("#text301", {
     type: "chars",
-    mask: "chars",
     onSplit: (self) => {
       gsap.from(self.chars, {
         opacity: 0,
@@ -163,7 +201,6 @@ document.fonts.ready.then(() => {
 
   let text303 = new SplitText("#text303", {
     type: "chars",
-    mask: "chars",
     onSplit: (self) => {
       gsap.from(self.chars, {
         opacity: 0,
@@ -181,55 +218,56 @@ document.fonts.ready.then(() => {
       });
     },
   });
+
+  let text302 = new SplitText("#text302", {
+    type: "chars",
+    onSplit: (self) => {
+      gsap.from(self.chars, {
+        y: "random(-20, 20)",
+        x: "random(-10, 10)",
+        rotation: "random(-20, 20)",
+        delay: 2,
+        opacity: 0,
+        filter: "blur(10px)",
+        ease: "power.inOut",
+        autoAlpha: 0,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: "#slide3",
+          start: "top bottom",
+          end: "center center",
+          scrub: true,
+          // markers: true,
+        },
+      });
+    },
+  });
+
+  let text304 = new SplitText("#text304", {
+    type: "chars",
+    onSplit: (self) => {
+      gsap.from(self.chars, {
+        y: "random(-20, 20)",
+        x: "random(-10, 10)",
+        rotation: "random(-20, 20)",
+        delay: 4,
+        opacity: 0,
+        filter: "blur(10px)",
+        ease: "power.inOut",
+        autoAlpha: 0,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: "#slide3",
+          start: "top bottom",
+          end: "center center",
+          scrub: true,
+          // markers: true,
+        },
+      });
+    },
+  });
 });
 
-let text302 = new SplitText("#text302", {
-  type: "chars",
-  onSplit: (self) => {
-    gsap.from(self.chars, {
-      y: "random(-10, 10)",
-      x: "random(-5, 5)",
-      rotation: "random(-10, 10)",
-      delay: 2,
-      opacity: 0,
-      filter: "blur(10px)",
-      ease: "power.inOut",
-      autoAlpha: 0,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: "#slide3",
-        start: "top bottom",
-        end: "center center",
-        scrub: true,
-        // markers: true,
-      },
-    });
-  },
-});
-
-let text304 = new SplitText("#text304", {
-  type: "chars",
-  onSplit: (self) => {
-    gsap.from(self.chars, {
-      y: "random(-10, 10)",
-      x: "random(-5, 5)",
-      rotation: "random(-10, 10)",
-      delay: 4,
-      opacity: 0,
-      filter: "blur(10px)",
-      ease: "power.inOut",
-      autoAlpha: 0,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: "#slide3",
-        start: "top bottom",
-        end: "center center",
-        scrub: true,
-        // markers: true,
-      },
-    });
-  },
-});
 
 // 3D STUFF
 const scene = new THREE.Scene();

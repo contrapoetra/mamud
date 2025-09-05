@@ -2,6 +2,7 @@
     --fg0: antiquewhite;
     --fg1: #ddd;
     --fg2: #666;
+    --fg3: #aaa;
     --bg0: #111;
 }
 
@@ -71,7 +72,6 @@ body {
     width: 1pt;
     height: 50%;
     background-color: var(--fg1);
-    filter: brightness(50%);
 }
 
 .slide3-sans {
@@ -81,6 +81,59 @@ body {
     text-shadow: 0 0 50px #fff2;
     font-size: 3em;
     color: var(--fg1);
+}
+
+#slide4 {
+    position: relative;
+    font-size: 200%;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(fg2);
+    color: var(--fg1);
+    display: flex;
+    width: 300vw;
+    /*transform: translateX(-200vw);*/
+}
+
+#slide4 > div {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    /*flex-direction: column;*/
+    justify-content: center;
+    align-items: center;
+    /*text-align: center;*/
+    gap: 5vw;
+    color: var(--fg2);
+}
+
+.showcase-video {
+    outline: 1pt gray solid;
+    width: 50vw;
+    height: calc((9/16) * 50vw);
+}
+
+#showcase-type {
+    font-size: 50%;
+    font-family: "Montserrat";
+    letter-spacing: 50%;
+    margin-bottom: 2em;
+}
+
+#showcase-title {
+    font-size: 150%;
+    font-weight: 500;
+    font-family: "Outfit";
+    color: var(--fg1);
+    text-shadow: 0 0 100px var(fg2);
+    text-transform: none;
+}
+
+#showcase-credit {
+    font-size: 75%;
+    font-family: "Outfit";
+    color: var(--fg3);
+    text-shadow: 0 0 100px var(fg2);
+    text-transform: none;
 }
 
 #text101 {
@@ -101,7 +154,7 @@ body {
 
 .column-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 3fr 1fr 3fr;
     z-index: 1;
 }
 
