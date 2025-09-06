@@ -83,15 +83,8 @@ gsap.from("#separator", {
     start: "top bottom",
     end: "center center",
     scrub: true,
-    // markers: true,
   },
 });
-
-// let tl = gsap.timeline();
-
-// tl.to("#slide4", {x: -window.innerWidth})
-//   .to("#slide4", {x: -window.innerWidth * 2})
-//   .to("#slide4", {x: -window.innerWidth * 3});
 
 let slide4_slides = gsap.utils.toArray("#slide4 > div");
 
@@ -105,7 +98,6 @@ gsap.to(slide4_slides, {
     scrub: true,
     pin: true,
     anticipatePin: 1,
-    // markers: true,
   },
 });
 
@@ -122,7 +114,6 @@ document.fonts.ready.then(() => {
           start: "top top",
           end: "bottom center",
           scrub: 0.25,
-          // markers: true,
         },
       });
     },
@@ -140,7 +131,6 @@ document.fonts.ready.then(() => {
           start: "top top",
           end: "bottom center",
           scrub: 0.25,
-          // markers: true,
         },
       });
     },
@@ -152,7 +142,6 @@ document.fonts.ready.then(() => {
     gsap.from(chars, {
       y: "random(500, 1000)",
       x: "random(-200, 200)",
-      // y: 200,
       ease: "power2.inOut",
       autoAlpha: 0,
       rotation: "random(-360, 360)",
@@ -163,7 +152,6 @@ document.fonts.ready.then(() => {
         start: "top bottom",
         end: "center center",
         scrub: true,
-        // markers: true,
       },
     });
 
@@ -180,7 +168,6 @@ document.fonts.ready.then(() => {
         start: "center center",
         end: "bottom top",
         scrub: true,
-        // markers: true,
       },
     });
   };
@@ -210,7 +197,6 @@ document.fonts.ready.then(() => {
           start: "top bottom",
           end: "center center",
           scrub: true,
-          // markers: true,
         },
       });
     },
@@ -230,7 +216,6 @@ document.fonts.ready.then(() => {
           start: "top bottom",
           end: "center center",
           scrub: true,
-          // markers: true,
         },
       });
     },
@@ -254,7 +239,6 @@ document.fonts.ready.then(() => {
           start: "top bottom",
           end: "center center",
           scrub: true,
-          // markers: true,
         },
       });
     },
@@ -278,7 +262,6 @@ document.fonts.ready.then(() => {
           start: "top bottom",
           end: "center center",
           scrub: true,
-          // markers: true,
         },
       });
     },
@@ -287,34 +270,37 @@ document.fonts.ready.then(() => {
 
 
 // 3D STUFF
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#render'),
-  alpha: true
-});
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+let init3d = () => {
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector('#render'),
+    alpha: true
+  });
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  document.body.appendChild( renderer.domElement );
 
-const color = 0xFFFFFF;
-const intensity = 10;
-const light = new THREE.DirectionalLight(color, intensity);
-light.position.set(0, 10, 0);
-light.target.position.set(-5, 0, 0);
-scene.add(light);
-scene.add(light.target);
+  const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+  const material = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
+  const cube = new THREE.Mesh( geometry, material );
+  scene.add( cube );
 
-camera.position.z = 3;
+  const color = 0xFFFFFF;
+  const intensity = 10;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(0, 10, 0);
+  light.target.position.set(-5, 0, 0);
+  scene.add(light);
+  scene.add(light.target);
 
-function animate() {
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.001;
-  renderer.render(scene, camera);
-}
-renderer.setAnimationLoop( animate)
+  camera.position.z = 3;
+
+  function animate() {
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.001;
+    renderer.render(scene, camera);
+  }
+  renderer.setAnimationLoop(animate)
+};
