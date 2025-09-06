@@ -155,12 +155,12 @@ document.fonts.ready.then(() => {
 
     gsap.fromTo(chars, {}, {
       y: "random(10, 200)",
-      x: "random(-100, 100)",
+      x: "random(-200, 200)",
       ease: "power1.in",
       autoAlpha: 0,
-      rotation: "random(-360, 360)",
-      filter: "blur(random(10, 30)px)",
-      stagger: 0.1,
+      rotation: "random(-180, 180)",
+      filter: "blur(random(5, 10)px)",
+      stagger: 0.025,
       scrollTrigger: {
         trigger: "#slide2",
         start: "center center",
