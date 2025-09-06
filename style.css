@@ -1,0 +1,211 @@
+:root {
+    --fg0: antiquewhite;
+    --fg1: #ddd;
+    --fg2: #666;
+    --fg3: #aaa;
+    --bg0: #111;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#render {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg0);
+    user-select: none;
+}
+
+#slide1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 0.5;
+    font-size: 2000%;
+    background: linear-gradient(to bottom, black, var(--bg0), var(--bg0));
+}
+
+#slide3 {
+    position: relative;
+    font-size: 200%;
+    font-weight: 800;
+    /*text-transform: uppercase;*/
+    font-family: "Libre Baskerville";
+    text-shadow: 0 0 10px var(fg2);
+    color: var(--fg2);
+}
+
+#slide3 > div {
+    position: absolute;
+    display: flex;
+    /*width: 50%;*/
+    flex-direction: column;
+}
+
+#group1 {
+    /*transform: translateX(100vw);*/
+    top: 5vw;
+    left: 10vw;
+}
+
+#group2 {
+    /*transform: translateX(100vw);*/
+    bottom: 5vw;
+    right: 10vw;
+    align-items: flex-end;
+}
+
+#separator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 1pt;
+    height: 50%;
+    background-color: var(--fg1);
+}
+
+.slide3-sans {
+    font-family: "Outfit";
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 0 50px #fff2;
+    font-size: 3em;
+    color: var(--fg1);
+}
+
+#slide4 {
+    position: relative;
+    font-size: 200%;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(fg2);
+    color: var(--fg1);
+    display: flex;
+    width: 300vw;
+    /*transform: translateX(-200vw);*/
+}
+
+#slide4 > div {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    /*flex-direction: column;*/
+    justify-content: center;
+    align-items: center;
+    /*text-align: center;*/
+    gap: 5vw;
+    color: var(--fg2);
+    outline: 1pt green solid;
+}
+
+.showcase-video {
+    outline: 1pt gray solid;
+    width: 50vw;
+    height: calc((9/16) * 50vw);
+}
+
+#showcase-type {
+    font-size: 50%;
+    font-family: "Montserrat";
+    letter-spacing: 50%;
+    margin-bottom: 2em;
+}
+
+#showcase-title {
+    font-size: 150%;
+    font-weight: 500;
+    font-family: "Outfit";
+    color: var(--fg1);
+    text-shadow: 0 0 100px var(fg2);
+    text-transform: none;
+}
+
+#showcase-credit {
+    font-size: 75%;
+    font-family: "Outfit";
+    color: var(--fg3);
+    text-shadow: 0 0 100px var(fg2);
+    text-transform: none;
+}
+
+#text101 {
+    font-family: "Outfit";
+    -webkit-text-stroke: 2pt var(--fg0);
+    color: transparent;
+    font-weight: 700;
+}
+
+#text102 {
+    font-family: "Staatliches";
+    font-weight: 900;
+    font-size: 120%;
+    text-transform: uppercase;
+    color: var(--fg1);
+    text-shadow: 0 0 50px #fff2;
+}
+
+.column-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr 3fr;
+    z-index: 1;
+}
+
+.column-grid > div {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    text-transform: uppercase;
+    font-family: "Major Mono Display";
+    font-size: 400%;
+    font-weight: 500;
+    color: var(--fg1);
+}
+
+.column-grid > div > div {
+    text-shadow: 0 0 20px #fff8;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    position: absolute;
+    z-index: 0;
+}
+
+.video-grid > div {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh / 3);
+    overflow: hidden;
+    filter: grayscale(95%) contrast(50%) brightness(20%);
+}
+
+.video-grid > div:nth-child(2) {
+    justify-content: center;
+}
+
+.video-grid > div:nth-child(3) {
+    justify-content: flex-end;
+}
+
+.video-grid > div > video {
+    width: 50vw;
+    min-height: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+    object-position: 50% 10%;
+    transform: scale(2);
+}
