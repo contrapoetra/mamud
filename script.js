@@ -10,8 +10,16 @@ let smoother = ScrollSmoother.create({
 });
 
 document.addEventListener('keydown', (event) => {
+  let current = window.pageYOffset;
+  let current_section = Math.round(current / window.innerHeight);
   if (event.key === "ArrowDown") {
-    smoother.scrollTop(window.innerHeight);
+    event.preventDefault();
+    let target = (current_section + 1) * window.innerHeight;
+    window.scrollTo(0, target);
+  } else if (event.key === "ArrowUp") {
+    event.preventDefault();
+    let target = (current_section - 1) * window.innerHeight;
+    window.scrollTo(0, target);
   }
 });
 
@@ -79,16 +87,25 @@ gsap.from("#separator", {
   },
 });
 
-gsap.to("#slide4", {
-  x: 2 * -window.innerWidth,
-  ease: "power1.inOut",
+// let tl = gsap.timeline();
+
+// tl.to("#slide4", {x: -window.innerWidth})
+//   .to("#slide4", {x: -window.innerWidth * 2})
+//   .to("#slide4", {x: -window.innerWidth * 3});
+
+let slide4_slides = gsap.utils.toArray("#slide4 > div");
+
+gsap.to(slide4_slides, {
+  xPercent: -100 * (slide4_slides.length - 1),
+  ease: "none",
   scrollTrigger: {
     trigger: "#slide4",
-    start: "top",
-    end: "300%",
+    start: "top top",
+    end: "200%",
     scrub: true,
-    // markers: true,
     pin: true,
+    anticipatePin: 1,
+    // markers: true,
   },
 });
 
