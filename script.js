@@ -54,7 +54,6 @@ gsap.from(
       start: "top bottom",
       end: "center center",
       scrub: true,
-      // markers: true,
     },
   },
 );
@@ -70,7 +69,6 @@ gsap.to(
       start: "center center",
       end: "bottom top",
       scrub: true,
-      // markers: true,
     },
   },
 );
