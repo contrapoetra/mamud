@@ -105,6 +105,12 @@ body {
     height: calc((9/16) * 50vw);
 }
 
+.showcase-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 #showcase-type {
     font-size: 50%;
     font-family: "Montserrat";
