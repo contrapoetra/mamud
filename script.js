@@ -99,6 +99,26 @@ gsap.to(slide4_slides, {
   },
 });
 
+gsap.to("#slide5 div:nth-child(1)", {
+  x: 200,
+  scrollTrigger: {
+    trigger: "#slide5",
+    start: "top",
+    end: "bottom%",
+    scrub: true,
+  },
+});
+
+gsap.to("#slide5 div:nth-child(3)", {
+  x: -200,
+  scrollTrigger: {
+    trigger: "#slide5",
+    start: "top",
+    end: "bottom%",
+    scrub: true,
+  },
+});
+
 document.fonts.ready.then(() => {
   let text101 = new SplitText("#text101", {
     type: "chars",
