@@ -164,7 +164,7 @@ document.fonts.ready.then(() => {
       autoAlpha: 0,
       rotation: "random(-360, 360)",
       filter: "blur(random(10, 30)px)",
-      stagger: 0.05,
+      stagger: 0.1,
       scrollTrigger: {
         trigger: "#slide2",
         start: "top bottom",

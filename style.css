@@ -103,6 +103,7 @@ body {
     outline: 1pt gray solid;
     width: 50vw;
     height: calc((9/16) * 50vw);
+    overflow: hidden
 }
 
 .showcase-video video {
@@ -149,7 +150,7 @@ body {
 }
 
 #slide5 > div {
-    text-shadow: 0 0 50px var(--fg1);
+    text-shadow: 0 0 50px var(--fg2);
 }
 
 #text101 {
