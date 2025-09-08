@@ -99,8 +99,8 @@ gsap.to(slide4_slides, {
   },
 });
 
-gsap.to("#slide5 div:nth-child(1)", {
-  x: 200,
+gsap.fromTo("#slide5 div:nth-child(1)", {xPercent: -100}, {
+  xPercent: 0,
   scrollTrigger: {
     trigger: "#slide5",
     start: "top",
@@ -109,8 +109,8 @@ gsap.to("#slide5 div:nth-child(1)", {
   },
 });
 
-gsap.to("#slide5 div:nth-child(3)", {
-  x: -200,
+gsap.fromTo("#slide5 div:nth-child(3)", {xPercent: 100}, {
+  xPercent: 0,
   scrollTrigger: {
     trigger: "#slide5",
     start: "top",

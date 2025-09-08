@@ -137,17 +137,19 @@ body {
 
 #slide5 {
     font-size: 2vw;
-    font-family: "Outfit";
-    color: var(--fg3);
-    text-shadow: 0 0 100px var(fg2);
-    text-transform: none;
-    font-weight: 500;
+    font-family: "Libre Baskerville";
+    color: var(--fg1);
+    font-weight: 800;
     display: flex;
     width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
     gap: 1em;
+}
+
+#slide5 > div {
+    text-shadow: 0 0 50px var(--fg1);
 }
 
 #text101 {
