@@ -233,7 +233,7 @@ document.fonts.ready.then(() => {
           trigger: "#slide3",
           start: "top bottom",
           end: "center center",
-          scrub: true,
+          scrub: 3,
         },
       });
     },
@@ -279,7 +279,7 @@ document.fonts.ready.then(() => {
           trigger: "#slide3",
           start: "top bottom",
           end: "center center",
-          scrub: true,
+          scrub: 3,
         },
       });
     },
