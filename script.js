@@ -23,6 +23,19 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+let videos = document.querySelectorAll('.showcase-video video');
+videos.forEach(video => {
+  video.addEventListener('click', (event) => {
+    if (video.classList.contains("showcase-video-selected")) {
+      video.classList.remove("showcase-video-selected");
+      return;
+    };
+    let selected = document.querySelector('.showcase-video-selected');
+    if (selected) selected.classList.remove("showcase-video-selected");
+    video.classList.add("showcase-video-selected")
+  });
+});
+
 for (let i = 1; i <= 3; i++) {
   gsap.to(
     {},
