@@ -24,12 +24,58 @@ document.addEventListener('keydown', (event) => {
 });
 
 let videos = document.querySelectorAll('.showcase-video video');
-videos.forEach(video => {
+let video_type_label = document.querySelector('#showcase-type > div:nth-child(1)');
+let video_types = document.querySelectorAll('.showcase-type-option');
+let current_video_type = null;
+let video_opened = false;
+let last_tween = null;
+
+
+videos.forEach((video, index) => {
   video.addEventListener('click', (event) => {
     if (video.classList.contains("showcase-video-selected")) {
       video.classList.remove("showcase-video-selected");
+      gsap.to(video_types[index], {
+        transform: "translateY(-2lh)",
+        duration: 0.3,
+        ease: "circ.in"
+      });
+      if (video_opened) {
+        gsap.to(video_type_label, {
+          transform: "translateY(-1lh)",
+          duration: 0.3,
+          ease: "circ.in"
+        });
+        video_opened = false;
+      }
+      if (current_video_type) { current_video_type = null };
+      if (last_tween) { last_tween.kill() };
       return;
     };
+
+    if (!video_opened) {
+      gsap.fromTo(video_type_label, { transform: "translateY(1lh)" }, {
+        transform: "translateY(0lh)",
+        duration: 0.3,
+        ease: "circ.out"
+      });
+      video_opened = true;
+    }
+
+    if (last_tween) { last_tween.kill() };
+    last_tween = gsap.fromTo(video_types[index], { transform: "translateY(0lh)" }, {
+      transform: "translateY(-1lh)",
+      duration: 0.3,
+      ease: "circ.out",
+      delay: (current_video_type ? 0.3 : 0)
+    });
+    gsap.to(current_video_type, {
+      transform: "translateY(-2lh)",
+      duration: 0.3,
+      ease: "circ.in"
+    })
+    console.log(current_video_type);
+    current_video_type = video_types[index];
     let selected = document.querySelector('.showcase-video-selected');
     if (selected) selected.classList.remove("showcase-video-selected");
     video.classList.add("showcase-video-selected")

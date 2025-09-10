@@ -100,6 +100,7 @@ body {
 }
 
 .showcase-video {
+    position: absolute;
     display: flex;
     /*outline: 1pt gray solid;*/
     width: 100vw;
@@ -123,11 +124,15 @@ body {
     object-fit: cover;
     object-position: center center;
     filter: grayscale(90%) contrast(50%) brightness(30%);
-    transition: filter ease-out .5s, width cubic-bezier(0.165, 0.84, 0.44, 1) 1s;
+    transition:
+        filter ease-out .5s,
+        width cubic-bezier(0.075, 0.82, 0.165, 1) 1s,
+        height cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
 }
 
 .showcase-video video:hover:not(.showcase-video-selected) {
     filter: grayscale(20%) contrast(100%) brightness(50%);
+    height: calc(((9/16) * 50vw) * 1.05);
 }
 
 video.showcase-video-selected {
@@ -137,20 +142,68 @@ video.showcase-video-selected {
     /*left and right margin in a shorthand*/
 }
 
+#showcase-info {
+    /*position: absolute;*/
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    align-items: center;
+    pointer-events: none;
+}
+
 #showcase-type {
+    /*outline: 1pt green solid;*/
     font-size: 50%;
     font-family: "Montserrat";
-    letter-spacing: 50%;
+    letter-spacing: 0.5vw;
     margin-bottom: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100vw;
+    height: 1lh;
+    gap: 1vw;
+    overflow: hidden;
+    /*transform: translateY(calc(((9/16) * 25vw) * -1.2));*/
+}
+
+#showcase-type > div:nth-child(1) {
+    transform: translateY(1lh);
+    text-align: right;
+}
+
+#showcase-type-options {
+    transform: translateY(1lh);
+}
+
+.showcase-type-option {
+    position: absolute;
 }
 
 #showcase-title {
+    outline: 1pt red solid;
     font-size: 150%;
     font-weight: 500;
     font-family: "Outfit";
     color: var(--fg1);
     text-shadow: 0 0 100px var(fg2);
     text-transform: none;
+    position: absolute;
+    width: 100vw;
+    height: 1lh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#showcase-title-options {
+}
+
+.showcase-title-option {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + (1lh)));
 }
 
 #showcase-credit {
