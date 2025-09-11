@@ -26,59 +26,166 @@ document.addEventListener('keydown', (event) => {
 let videos = document.querySelectorAll('.showcase-video video');
 let video_type_label = document.querySelector('#showcase-type > div:nth-child(1)');
 let video_types = document.querySelectorAll('.showcase-type-option');
+let video_titles = document.querySelectorAll('.showcase-title-option');
+let video_credits = document.querySelectorAll('.showcase-credit-option');
 let current_video_type = null;
+let current_video_title = null;
+let current_video_credit = null;
 let video_opened = false;
-let last_tween = null;
-
+let last_type_enter = null;
+let last_type_exit = null;
+let last_title_enter = null;
+let last_title_exit = null;
+let last_credit_enter = null;
+let last_credit_exit = null;
+let last_label_enter = null;
+let last_label_exit = null;
+let duration = 0.5;
 
 videos.forEach((video, index) => {
   video.addEventListener('click', (event) => {
     if (video.classList.contains("showcase-video-selected")) {
       video.classList.remove("showcase-video-selected");
-      gsap.to(video_types[index], {
-        transform: "translateY(-2lh)",
-        duration: 0.3,
-        ease: "circ.in"
-      });
-      if (video_opened) {
-        gsap.to(video_type_label, {
-          transform: "translateY(-1lh)",
-          duration: 0.3,
+
+      if (last_type_enter && last_type_enter.isActive()) {
+        last_type_enter.reverse();
+      } else {
+        last_type_enter.kill();
+        last_type_exit = gsap.to(video_types[index], {
+          transform: "translateY(-2lh)",
+          duration: duration,
           ease: "circ.in"
         });
+      }
+
+      if (last_title_enter && last_title_enter.isActive()) {
+        last_title_enter.reverse();
+      } else {
+        last_title_enter.kill();
+        last_title_exit = gsap.to(video_titles[index], {
+          transform: "translateY(-1lh)",
+          duration: duration,
+          ease: "circ.in"
+        })
+      }
+
+      if (last_credit_enter && last_credit_enter.isActive()) {
+        last_credit_enter.reverse();
+      } else {
+        last_credit_enter.kill();
+        last_credit_exit = gsap.to(video_credits[index], {
+          transform: "translateY(-1lh)",
+          duration: duration,
+          ease: "circ.in"
+        })
+      }
+
+      if (video_opened) {
+        if (last_label_enter && last_label_enter.isActive()) {
+          last_label_enter.reverse();
+        } else {
+          last_label_enter.kill();
+          last_label_exit = gsap.to(video_type_label, {
+            transform: "translateY(-1lh)",
+            duration: duration,
+            ease: "circ.in"
+          });
+        }
         video_opened = false;
       }
       if (current_video_type) { current_video_type = null };
-      if (last_tween) { last_tween.kill() };
+      if (current_video_title) { current_video_title = null };
       return;
     };
 
     if (!video_opened) {
-      gsap.fromTo(video_type_label, { transform: "translateY(1lh)" }, {
-        transform: "translateY(0lh)",
-        duration: 0.3,
-        ease: "circ.out"
-      });
+      if (last_label_exit && last_label_exit.isActive()) {
+        last_label_exit.reverse();
+      } else {
+        try { last_label_exit.kill(); } catch { }
+        last_label_enter = gsap.fromTo(video_type_label, { transform: "translateY(1lh)" }, {
+          transform: "translateY(0lh)",
+          duration: duration,
+          ease: "circ.out"
+        });
+      }
       video_opened = true;
     }
 
-    if (last_tween) { last_tween.kill() };
-    last_tween = gsap.fromTo(video_types[index], { transform: "translateY(0lh)" }, {
-      transform: "translateY(-1lh)",
-      duration: 0.3,
-      ease: "circ.out",
-      delay: (current_video_type ? 0.3 : 0)
-    });
-    gsap.to(current_video_type, {
-      transform: "translateY(-2lh)",
-      duration: 0.3,
-      ease: "circ.in"
-    })
-    console.log(current_video_type);
+    if (last_type_exit && last_type_exit.isActive()) {
+      last_type_exit.reverse();
+    } else {
+      try {
+        last_type_enter.reverse();
+        last_type_exit.kill()
+      } catch { }
+      last_type_enter = gsap.fromTo(video_types[index], { transform: "translateY(0lh)" }, {
+        transform: "translateY(-1lh)",
+        duration: duration,
+        ease: "circ.out",
+        delay: (current_video_type ? duration : 0),
+      });
+    }
+
+    if (last_title_exit && last_title_exit.isActive()) {
+      last_title_exit.reverse();
+    } else {
+      try {
+        last_title_enter.reverse();
+        last_title_exit.kill();
+      } catch { }
+      last_title_enter = gsap.fromTo(video_titles[index], { transform: "translateY(1lh)" }, {
+        transform: "translateY(0lh)",
+        duration: duration,
+        ease: "circ.out",
+        delay: (current_video_type ? duration : 0),
+      });
+    }
+
+    if (last_credit_exit && last_credit_exit.isActive()) {
+      last_credit_exit.reverse();
+    } else {
+      try {
+        last_credit_enter.reverse();
+        last_credit_exit.kill();
+      } catch { }
+      last_credit_enter = gsap.fromTo(video_credits[index], { transform: "translateY(1lh)" }, {
+        transform: "translateY(0lh)",
+        duration: duration,
+        ease: "circ.out",
+        delay: (current_video_type ? duration : 0),
+      });
+    }
+
+    if (current_video_type) {
+      gsap.to(current_video_type, {
+        transform: "translateY(-2lh)",
+        duration: duration,
+        ease: "circ.in"
+      });
+    }
+    if (current_video_title) {
+      gsap.to(current_video_title, {
+        transform: "translateY(-1lh)",
+        duration: duration,
+        ease: "circ.in"
+      })
+    }
+    if (current_video_credit) {
+      gsap.to(current_video_credit, {
+        transform: "translateY(-1lh)",
+        duration: duration,
+        ease: "circ.in"
+      })
+    }
+
     current_video_type = video_types[index];
+    current_video_title = video_titles[index];
+    current_video_credit = video_credits[index];
     let selected = document.querySelector('.showcase-video-selected');
     if (selected) selected.classList.remove("showcase-video-selected");
     video.classList.add("showcase-video-selected")
+    video_credits.classList.add("showcase-credit-active")
   });
 });
 
