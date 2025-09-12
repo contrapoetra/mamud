@@ -28,6 +28,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-direction: column;
     line-height: 0.5;
     font-size: 2000%;
@@ -36,7 +37,7 @@ body {
 
 #slide3 {
     position: relative;
-    font-size: 200%;
+    font-size: 2vw;
     font-weight: 800;
     font-family: "Libre Baskerville";
     text-shadow: 0 0 10px var(fg2);
@@ -240,12 +241,13 @@ video.showcase-video-selected {
     -webkit-text-stroke: 2pt var(--fg0);
     color: transparent;
     font-weight: 700;
+    font-size: 30vh;
 }
 
 #text102 {
     font-family: "Staatliches";
     font-weight: 900;
-    font-size: 120%;
+    font-size: 20vw;
     text-transform: uppercase;
     color: var(--fg1);
     text-shadow: 0 0 50px #fff2;
@@ -306,4 +308,10 @@ video.showcase-video-selected {
     object-fit: cover;
     object-position: 50% 10%;
     transform: scale(2);
+}
+
+@media screen and (orientation: portrait) {
+    #slide3 {
+        font-size: 5vw;
+    }
 }

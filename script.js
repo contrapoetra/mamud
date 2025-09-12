@@ -44,6 +44,7 @@ let duration = 0.5;
 
 videos.forEach((video, index) => {
   video.addEventListener('click', (event) => {
+    window.scrollTo(0, 3 * window.innerHeight);
     if (video.classList.contains("showcase-video-selected")) {
       video.classList.remove("showcase-video-selected");
 
@@ -311,11 +312,11 @@ document.fonts.ready.then(() => {
     gsap.from(chars, {
       y: "random(500, 1000)",
       x: "random(-200, 200)",
-      ease: "power2.inOut",
+      ease: "circ.inOut",
       autoAlpha: 0,
       rotation: "random(-360, 360)",
       filter: "blur(random(10, 30)px)",
-      stagger: 0.1,
+      stagger: 0.05,
       scrollTrigger: {
         trigger: "#slide2",
         start: "top bottom",
@@ -325,18 +326,18 @@ document.fonts.ready.then(() => {
     });
 
     gsap.fromTo(chars, {}, {
-      y: "random(10, 200)",
+      y: "random(10, -200)",
       x: "random(-200, 200)",
       ease: "power1.in",
       autoAlpha: 0,
       rotation: "random(-180, 180)",
       filter: "blur(random(5, 10)px)",
-      stagger: 0.025,
+      stagger: 0.08,
       scrollTrigger: {
         trigger: "#slide2",
         start: "center center",
         end: "bottom top",
-        scrub: true,
+        scrub: 0.5,
       },
     });
   };
