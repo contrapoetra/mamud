@@ -80,7 +80,7 @@ body {
 }
 
 #slide4 {
-    position: relative;
+    /*position: relative;*/
     font-size: 200%;
     text-transform: uppercase;
     text-shadow: 0 0 10px var(fg2);

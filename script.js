@@ -250,21 +250,6 @@ gsap.from("#separator", {
   },
 });
 
-let slide4_slides = gsap.utils.toArray("#slide4 > div");
-
-gsap.to(slide4_slides, {
-  xPercent: -100 * (slide4_slides.length - 1),
-  ease: "none",
-  scrollTrigger: {
-    trigger: "#slide4",
-    start: "top top",
-    end: "200%",
-    scrub: true,
-    pin: true,
-    anticipatePin: 1,
-  },
-});
-
 gsap.fromTo("#slide5 div:nth-child(1)", {xPercent: -100}, {
   xPercent: 0,
   scrollTrigger: {
