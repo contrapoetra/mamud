@@ -1,4 +1,5 @@
-import * as THREE from 'three';
+import * as THREE from "three";
+import { APP } from "./js/app.js";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 
 let smoother = ScrollSmoother.create({
@@ -9,7 +10,7 @@ let smoother = ScrollSmoother.create({
   normalizeScroll: true,
 });
 
-document.addEventListener('keydown', (event) => {
+document.addEventListener("keydown", (event) => {
   let current = window.pageYOffset;
   let current_section = Math.round(current / window.innerHeight);
   if (event.key === "ArrowDown") {
@@ -23,11 +24,13 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-let videos = document.querySelectorAll('.showcase-video video');
-let video_type_label = document.querySelector('#showcase-type > div:nth-child(1)');
-let video_types = document.querySelectorAll('.showcase-type-option');
-let video_titles = document.querySelectorAll('.showcase-title-option');
-let video_credits = document.querySelectorAll('.showcase-credit-option');
+let videos = document.querySelectorAll(".showcase-video video");
+let video_type_label = document.querySelector(
+  "#showcase-type > div:nth-child(1)",
+);
+let video_types = document.querySelectorAll(".showcase-type-option");
+let video_titles = document.querySelectorAll(".showcase-title-option");
+let video_credits = document.querySelectorAll(".showcase-credit-option");
 let current_video_type = null;
 let current_video_title = null;
 let current_video_credit = null;
@@ -43,7 +46,7 @@ let last_label_exit = null;
 let duration = 0.5;
 
 videos.forEach((video, index) => {
-  video.addEventListener('click', (event) => {
+  video.addEventListener("click", (event) => {
     window.scrollTo(0, 3 * window.innerHeight);
     if (video.classList.contains("showcase-video-selected")) {
       video.classList.remove("showcase-video-selected");
@@ -55,7 +58,7 @@ videos.forEach((video, index) => {
         last_type_exit = gsap.to(video_types[index], {
           transform: "translateY(-2lh)",
           duration: duration,
-          ease: "circ.in"
+          ease: "circ.in",
         });
       }
 
@@ -66,8 +69,8 @@ videos.forEach((video, index) => {
         last_title_exit = gsap.to(video_titles[index], {
           transform: "translateY(-1lh)",
           duration: duration,
-          ease: "circ.in"
-        })
+          ease: "circ.in",
+        });
       }
 
       if (last_credit_enter && last_credit_enter.isActive()) {
@@ -77,8 +80,8 @@ videos.forEach((video, index) => {
         last_credit_exit = gsap.to(video_credits[index], {
           transform: "translateY(-1lh)",
           duration: duration,
-          ease: "circ.in"
-        })
+          ease: "circ.in",
+        });
       }
 
       if (video_opened) {
@@ -89,26 +92,36 @@ videos.forEach((video, index) => {
           last_label_exit = gsap.to(video_type_label, {
             transform: "translateY(-1lh)",
             duration: duration,
-            ease: "circ.in"
+            ease: "circ.in",
           });
         }
         video_opened = false;
       }
-      if (current_video_type) { current_video_type = null };
-      if (current_video_title) { current_video_title = null };
+      if (current_video_type) {
+        current_video_type = null;
+      }
+      if (current_video_title) {
+        current_video_title = null;
+      }
       return;
-    };
+    }
 
     if (!video_opened) {
       if (last_label_exit && last_label_exit.isActive()) {
         last_label_exit.reverse();
       } else {
-        try { last_label_exit.kill(); } catch { }
-        last_label_enter = gsap.fromTo(video_type_label, { transform: "translateY(1lh)" }, {
-          transform: "translateY(0lh)",
-          duration: duration,
-          ease: "circ.out"
-        });
+        try {
+          last_label_exit.kill();
+        } catch {}
+        last_label_enter = gsap.fromTo(
+          video_type_label,
+          { transform: "translateY(1lh)" },
+          {
+            transform: "translateY(0lh)",
+            duration: duration,
+            ease: "circ.out",
+          },
+        );
       }
       video_opened = true;
     }
@@ -118,14 +131,18 @@ videos.forEach((video, index) => {
     } else {
       try {
         last_type_enter.reverse();
-        last_type_exit.kill()
-      } catch { }
-      last_type_enter = gsap.fromTo(video_types[index], { transform: "translateY(0lh)" }, {
-        transform: "translateY(-1lh)",
-        duration: duration,
-        ease: "circ.out",
-        delay: (current_video_type ? duration : 0),
-      });
+        last_type_exit.kill();
+      } catch {}
+      last_type_enter = gsap.fromTo(
+        video_types[index],
+        { transform: "translateY(0lh)" },
+        {
+          transform: "translateY(-1lh)",
+          duration: duration,
+          ease: "circ.out",
+          delay: current_video_type ? duration : 0,
+        },
+      );
     }
 
     if (last_title_exit && last_title_exit.isActive()) {
@@ -134,13 +151,17 @@ videos.forEach((video, index) => {
       try {
         last_title_enter.reverse();
         last_title_exit.kill();
-      } catch { }
-      last_title_enter = gsap.fromTo(video_titles[index], { transform: "translateY(1lh)" }, {
-        transform: "translateY(0lh)",
-        duration: duration,
-        ease: "circ.out",
-        delay: (current_video_type ? duration : 0),
-      });
+      } catch {}
+      last_title_enter = gsap.fromTo(
+        video_titles[index],
+        { transform: "translateY(1lh)" },
+        {
+          transform: "translateY(0lh)",
+          duration: duration,
+          ease: "circ.out",
+          delay: current_video_type ? duration : 0,
+        },
+      );
     }
 
     if (last_credit_exit && last_credit_exit.isActive()) {
@@ -149,44 +170,47 @@ videos.forEach((video, index) => {
       try {
         last_credit_enter.reverse();
         last_credit_exit.kill();
-      } catch { }
-      last_credit_enter = gsap.fromTo(video_credits[index], { transform: "translateY(1lh)" }, {
-        transform: "translateY(0lh)",
-        duration: duration,
-        ease: "circ.out",
-        delay: (current_video_type ? duration : 0),
-      });
+      } catch {}
+      last_credit_enter = gsap.fromTo(
+        video_credits[index],
+        { transform: "translateY(1lh)" },
+        {
+          transform: "translateY(0lh)",
+          duration: duration,
+          ease: "circ.out",
+          delay: current_video_type ? duration : 0,
+        },
+      );
     }
 
     if (current_video_type) {
       gsap.to(current_video_type, {
         transform: "translateY(-2lh)",
         duration: duration,
-        ease: "circ.in"
+        ease: "circ.in",
       });
     }
     if (current_video_title) {
       gsap.to(current_video_title, {
         transform: "translateY(-1lh)",
         duration: duration,
-        ease: "circ.in"
-      })
+        ease: "circ.in",
+      });
     }
     if (current_video_credit) {
       gsap.to(current_video_credit, {
         transform: "translateY(-1lh)",
         duration: duration,
-        ease: "circ.in"
-      })
+        ease: "circ.in",
+      });
     }
 
     current_video_type = video_types[index];
     current_video_title = video_titles[index];
     current_video_credit = video_credits[index];
-    let selected = document.querySelector('.showcase-video-selected');
+    let selected = document.querySelector(".showcase-video-selected");
     if (selected) selected.classList.remove("showcase-video-selected");
-    video.classList.add("showcase-video-selected")
-    video_credits.classList.add("showcase-credit-active")
+    video.classList.add("showcase-video-selected");
   });
 });
 
@@ -210,38 +234,32 @@ for (let i = 1; i <= 3; i++) {
   );
 }
 
-gsap.from(
-  "#video1",
-  {
-    x: -500,
-    ease: "power2.out",
-    autoAlpha: 0,
-    scrollTrigger: {
-      trigger: "#slide2",
-      start: "top bottom",
-      end: "center center",
-      scrub: true,
-    },
+gsap.from("#video1", {
+  x: -500,
+  ease: "power2.out",
+  autoAlpha: 0,
+  scrollTrigger: {
+    trigger: "#slide2",
+    start: "top bottom",
+    end: "center center",
+    scrub: true,
   },
-);
+});
 
-gsap.to(
-  "#video3",
-  {
-    x: 500,
-    ease: "power2.in",
-    autoAlpha: 0,
-    scrollTrigger: {
-      trigger: "#slide2",
-      start: "center center",
-      end: "bottom top",
-      scrub: true,
-    },
+gsap.to("#video3", {
+  x: 500,
+  ease: "power2.in",
+  autoAlpha: 0,
+  scrollTrigger: {
+    trigger: "#slide2",
+    start: "center center",
+    end: "bottom top",
+    scrub: true,
   },
-);
+});
 
 gsap.from("#separator", {
-  rotation: 45/2,
+  rotation: 45 / 2,
   filter: "blur(5pt)",
   scrollTrigger: {
     trigger: "#slide3",
@@ -251,25 +269,33 @@ gsap.from("#separator", {
   },
 });
 
-gsap.fromTo("#slide5 div:nth-child(1)", {xPercent: -100}, {
-  xPercent: 0,
-  scrollTrigger: {
-    trigger: "#slide5",
-    start: "top",
-    end: "bottom%",
-    scrub: true,
+gsap.fromTo(
+  "#slide5 div:nth-child(1)",
+  { xPercent: -100 },
+  {
+    xPercent: 0,
+    scrollTrigger: {
+      trigger: "#slide5",
+      start: "top",
+      end: "bottom%",
+      scrub: true,
+    },
   },
-});
+);
 
-gsap.fromTo("#slide5 div:nth-child(3)", {xPercent: 100}, {
-  xPercent: 0,
-  scrollTrigger: {
-    trigger: "#slide5",
-    start: "top",
-    end: "bottom%",
-    scrub: true,
+gsap.fromTo(
+  "#slide5 div:nth-child(3)",
+  { xPercent: 100 },
+  {
+    xPercent: 0,
+    scrollTrigger: {
+      trigger: "#slide5",
+      start: "top",
+      end: "bottom%",
+      scrub: true,
+    },
   },
-});
+);
 
 document.fonts.ready.then(() => {
   let text101 = new SplitText("#text101", {
@@ -325,21 +351,25 @@ document.fonts.ready.then(() => {
       },
     });
 
-    gsap.fromTo(chars, {}, {
-      y: "random(10, -200)",
-      x: "random(-200, 200)",
-      ease: "power1.in",
-      autoAlpha: 0,
-      rotation: "random(-180, 180)",
-      filter: "blur(random(5, 10)px)",
-      stagger: 0.08,
-      scrollTrigger: {
-        trigger: "#slide2",
-        start: "center center",
-        end: "bottom top",
-        scrub: 0.5,
+    gsap.fromTo(
+      chars,
+      {},
+      {
+        y: "random(10, -200)",
+        x: "random(-200, 200)",
+        ease: "power1.in",
+        autoAlpha: 0,
+        rotation: "random(-180, 180)",
+        filter: "blur(random(5, 10)px)",
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: "#slide2",
+          start: "center center",
+          end: "bottom top",
+          scrub: 0.5,
+        },
       },
-    });
+    );
   };
 
   for (let i = 1; i <= 3; i++) {
@@ -438,26 +468,30 @@ document.fonts.ready.then(() => {
   });
 });
 
-
 // 3D STUFF
 
 let init3d = () => {
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  const camera = new THREE.PerspectiveCamera(
+    35,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000,
+  );
 
   const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#render'),
-    alpha: true
+    canvas: document.querySelector("#render"),
+    alpha: true,
   });
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  document.body.appendChild( renderer.domElement );
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
 
-  const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-  const material = new THREE.MeshPhongMaterial( { color: 0x00ff00 } );
-  const cube = new THREE.Mesh( geometry, material );
-  scene.add( cube );
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+  const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
 
-  const color = 0xFFFFFF;
+  const color = 0xffffff;
   const intensity = 10;
   const light = new THREE.DirectionalLight(color, intensity);
   light.position.set(0, 10, 0);
@@ -472,5 +506,48 @@ let init3d = () => {
     cube.rotation.y += 0.001;
     renderer.render(scene, camera);
   }
-  renderer.setAnimationLoop(animate)
+  renderer.setAnimationLoop(animate);
 };
+
+window.THREE = THREE; // Used by APP Scripts.
+
+var loader = new THREE.FileLoader();
+loader.load("3d.json", function (text) {
+  var player = new APP.Player();
+  player.load(JSON.parse(text));
+  player.setSize(window.innerWidth, window.innerHeight);
+  player.play();
+
+  let camera = player.getCamera();
+  camera.position.y = 10;
+
+  function map (number, inMin, inMax, outMin, outMax) {
+      return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+  }
+
+  gsap.to(
+    {},
+    {
+      scrollTrigger: {
+        trigger: "#main",
+        start: "top",
+        end: "bottom",
+        scrub: true,
+        onUpdate: (self) => {
+          let p = self.progress * 100;
+          let mapped = map(p, 0, 80, 10, -5);
+          camera.position.y = mapped;
+        },
+      },
+    },
+  );
+
+  let app = document.querySelector("#app");
+  let scene = player.dom;
+  app.appendChild(scene);
+  scene.classList.add("scene");
+
+  window.addEventListener("resize", function () {
+    player.setSize(window.innerWidth, window.innerHeight);
+  });
+});

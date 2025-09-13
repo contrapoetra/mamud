@@ -17,10 +17,19 @@ body {
     left: 0;
 }
 
+.scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: brightness(50%);
+}
+
 .slide {
+    z-index: 0;
     width: 100vw;
     height: 100vh;
-    background: var(--bg0);
+    /*background: var(--bg0);*/
     user-select: none;
 }
 
@@ -32,7 +41,7 @@ body {
     flex-direction: column;
     line-height: 0.5;
     font-size: 2000%;
-    background: linear-gradient(to bottom, black, var(--bg0), var(--bg0));
+    /*background: linear-gradient(to bottom, black, var(--bg0), var(--bg0));*/
 }
 
 #slide3 {
